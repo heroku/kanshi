@@ -1,0 +1,10 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    sequel (3.40.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  sequel
