@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    pg (0.14.1)
     scrolls (0.2.3)
     sequel (3.40.0)
 
@@ -8,5 +9,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  pg
   scrolls
   sequel

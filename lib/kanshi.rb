@@ -1,6 +1,7 @@
 Kanshi = Class.new
 
-require 'kanshi/reporter'
+require 'kanshi/collector'
+require 'kanshi/scrolls_reporter'
 
 class Kanshi
 
@@ -20,7 +21,7 @@ class Kanshi
   def run
     loop do
       report
-      sleep options[:frequency]
+      sleep(@options[:frequency])
     end
   end
 

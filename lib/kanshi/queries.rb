@@ -1,4 +1,4 @@
-Kanshi::Queries = <<EOF.split(/\s+;\s+/)
+Kanshi::Queries = <<EOF.split(/\s*;\s*/)
 SELECT
   pg_database_size(d.datname) as size,
   numbackends,
@@ -19,18 +19,18 @@ WHERE
   not datistemplate and d.datname != 'postgres';
 
 SELECT
-  SUM(seq_scan) AS seq_scan,
-  SUM(seq_tup_read) AS seq_tup_read,
-  SUM(idx_scan) AS idx_scan,
-  SUM(idx_tup_fetch) AS idx_tup_fetch
+  SUM(seq_scan)::bigint AS seq_scan,
+  SUM(seq_tup_read)::bigint AS seq_tup_read,
+  SUM(idx_scan)::bigint AS idx_scan,
+  SUM(idx_tup_fetch)::bigint AS idx_tup_fetch
 FROM
   pg_stat_user_tables;
 
 SELECT
-  SUM(heap_blks_read) AS heap_blks_read,
-  SUM(heap_blks_hit) AS heap_blks_hit,
-  SUM(idx_blks_read) AS idx_blks_read,
-  SUM(idx_blks_hit) AS idx_blks_hit
+  SUM(heap_blks_read)::bigint AS heap_blks_read,
+  SUM(heap_blks_hit)::bigint AS heap_blks_hit,
+  SUM(idx_blks_read)::bigint AS idx_blks_read,
+  SUM(idx_blks_hit)::bigint AS idx_blks_hit
 FROM
   pg_statio_user_tables;
 EOF

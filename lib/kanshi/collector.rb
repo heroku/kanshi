@@ -1,6 +1,11 @@
 require 'sequel'
+require 'kanshi/queries'
 
 class Kanshi::Collector
+
+  def self.collect(*args)
+    new(*args).collect
+  end
 
   def initialize(database_url)
     @url = database_url
@@ -10,13 +15,13 @@ class Kanshi::Collector
     db = Sequel.connect(@url)
     yield db
   ensure
-    db.disconnect
+    db.disconnect if db
   end
 
   def collect
     data = {}
     with_db do |db|
-      Queries.each do |query|
+      ::Kanshi::Queries.each do |query|
         data.merge! db[query].first
       end
     end

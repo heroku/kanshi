@@ -6,5 +6,5 @@ require 'kanshi'
 
 Kanshi.run(
   :databases => ENV.select { |k, v| v =~ %r{^postgres://} },
-  :frequency => ENV['FREQUENCY'].to_i || 300
+  :frequency => (ENV['FREQUENCY'] || 300).to_i
 )
