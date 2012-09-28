@@ -3,4 +3,8 @@
 $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'kanshi'
-Kanshi.run
+
+Kanshi.run(
+  :databases => ENV.select { |k, v| v =~ %r{^postgres://} },
+  :frequency => ENV['FREQUENCY'].to_i || 300
+)

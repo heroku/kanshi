@@ -1,10 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    scrolls (0.2.3)
     sequel (3.40.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  scrolls
   sequel
