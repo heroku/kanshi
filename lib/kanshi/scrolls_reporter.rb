@@ -1,6 +1,6 @@
 class Kanshi::ScrollsReporter
 
-  def report(name, data)
+  def report(name, url, data)
     Scrolls.context(name: name) do
       Scrolls.log(data)
     end

@@ -28,7 +28,8 @@ class Kanshi
     @options[:databases].each do |name, database_url|
       reporter.report(
         name,
-        Collector.new(database_url))
+        database_url,
+        Collector.collect(database_url))
     end
   end
 
