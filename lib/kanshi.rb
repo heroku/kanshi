@@ -12,7 +12,7 @@ class Kanshi
   def initialize(options = {})
     @options = {
       :databases => [],
-      :frequency => 300,
+      :delay => 300,
       :reporter => ScrollsReporter
     }
     @options.merge!(options)
@@ -21,7 +21,7 @@ class Kanshi
   def run
     loop do
       report
-      sleep(@options[:frequency])
+      sleep(@options[:delay])
     end
   end
 

@@ -6,5 +6,5 @@ require 'kanshi'
 
 Kanshi.run(
   :databases => ENV.select { |k, v| v =~ %r{^postgres://} },
-  :frequency => (ENV['FREQUENCY'] || 300).to_i
+  :delay => (ENV['KANSHI_SAMPLE_DELAY'] || 300).to_i
 )
