@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
   s.executables = 'kanshi'
 
   s.add_dependency 'sequel', "~> 3.0"
-  s.add_dependency 'scrolls'
+  s.add_dependency 'scrolls', "~> 0.2"
   s.add_dependency 'pg'
 end
