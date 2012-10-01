@@ -5,6 +5,6 @@ $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
 require 'kanshi'
 
 Kanshi.run(
-  :databases => ENV.select { |k, v| v =~ %r{^postgres://} },
+  :databases => ENV.select { |k, v| v =~ %r{^postgres://} }.invert.invert,
   :delay => (ENV['KANSHI_SAMPLE_DELAY'] || 300).to_i
 )
