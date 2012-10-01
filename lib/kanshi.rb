@@ -16,6 +16,7 @@ class Kanshi
       :reporter => ScrollsReporter
     }
     @options.merge!(options)
+    @reporter = @options[:reporter].new
   end
 
   def run
@@ -27,15 +28,11 @@ class Kanshi
 
   def report
     @options[:databases].each do |name, database_url|
-      reporter.report(
+      @reporter.report(
         name,
         database_url,
         Collector.collect(database_url))
     end
-  end
-
-  def reporter
-    @reporter ||= @options[:reporter].new
   end
 
 end
