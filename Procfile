@@ -1,1 +1,1 @@
-app: bundle exec bin/run
+kanshi: bundle exec bin/kanshi
