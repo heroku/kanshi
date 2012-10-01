@@ -13,10 +13,8 @@ SELECT
   tup_deleted
 FROM
   pg_stat_database d
-RIGHT JOIN
-  pg_database on d.datname = pg_database.datname
 WHERE
-  not datistemplate and d.datname != 'postgres';
+  d.datname = ?;
 
 SELECT
   SUM(seq_scan)::bigint AS seq_scan,

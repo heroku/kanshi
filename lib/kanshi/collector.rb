@@ -9,6 +9,7 @@ class Kanshi::Collector
 
   def initialize(database_url)
     @url = database_url
+    @db_name = URI.parse(@url).path[1..-1]
   end
 
   def with_db(&block)
@@ -22,7 +23,7 @@ class Kanshi::Collector
     data = {}
     with_db do |db|
       ::Kanshi::Queries.each do |query|
-        data.merge! db[query].first
+        data.merge! db[query, @db_name].first
       end
     end
     data
