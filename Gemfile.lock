@@ -1,3 +1,11 @@
+PATH
+  remote: .
+  specs:
+    kanshi (0.0.2)
+      pg
+      scrolls (~> 0.2)
+      sequel (~> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -9,6 +17,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  pg
-  scrolls
-  sequel
+  kanshi!
