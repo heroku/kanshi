@@ -4,7 +4,14 @@ $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'kanshi'
 
+databases = ENV.select { |k, v| v =~ %r{^postgres://} }.invert.invert
+if prefix = ENV['KANSHI_PREFIX']
+  databases.keys.each do |db|
+    databases["#{prefix}.#{db}"] = databases.delete(db)
+  end
+end
+
 Kanshi.run(
-  :databases => ENV.select { |k, v| v =~ %r{^postgres://} }.invert.invert,
+  :databases => databases,
   :delay => (ENV['KANSHI_SAMPLE_DELAY'] || 300).to_i
 )
