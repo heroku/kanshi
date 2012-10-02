@@ -37,6 +37,25 @@ of your choosing, e.g. monitor specific databases or provide your own
 reporter for output. An easy way to do this would be to create a Rake
 task to run Kanshi.
 
+## Configuration
+
+If using the `kanshi` binary, configuration is optional but is done
+through environment variables:
+
+* Kanshi will monitor all `postgres://` URLs in your environment.
+* `KANSHI_SAMPLE_DELAY` will change how often Kanshi monitors your
+  database in seconds. Default: 300
+* `KANSHI_PREFIX` will change the prefix used on metrics. Default:
+  `kanshi`
+
+Environment variables have no effect on the Kanshi library code, so if
+executing Kanshi manually, configuration is done via the options hash
+passed to `Kanshi.run`:
+
+* `:databases`: A hash of database names to URLs ({String =>
+  String})
+* `:delay`: The delay between samples (Fixnum)
+
 ## Name
 
 Kanshi (監視) is Japanese for _surveillance_.
