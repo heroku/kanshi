@@ -11,7 +11,7 @@ class Kanshi::ScrollsReporter
   def report(name, url, data)
     data = calculate_hit_rate(record_and_diff(name, data))
     if data
-      Scrolls.context(:app => "kanshi.#{name}", :measure => true) do
+      Scrolls.context(:app => name, :measure => true) do
         data.each do |k, v|
           Scrolls.log(:at => k, :last => v)
         end
