@@ -3,9 +3,9 @@
 ## Purpose
 
 Kanshi watches your Postgres database and reports metrics to the log
-stream. You can then drain this log to an application - or fork and
-modify kanshi itself - to send these metrics to a service, like Librato
-or Splunk.
+stream. You can then drain this log to an application (or provide your
+own reporter class) to send these metrics to a service, like Librato or
+Splunk.
 
 ## Installation
 
@@ -52,9 +52,10 @@ Environment variables have no effect on the Kanshi library code, so if
 executing Kanshi manually, configuration is done via the options hash
 passed to `Kanshi.run`:
 
-* `:databases`: A hash of database names to URLs ({String =>
-  String})
-* `:delay`: The delay between samples (Fixnum)
+* `:databases`: A hash of database names to URLs ({String => String})
+* `:delay`: The delay between samples (Fixnum). Default: 300.
+* `:reporter`: A Class that responds to `#report` to recieve metrics
+  (Class). Default: `Kanshi::ScrollsReporter`.
 
 ## Name
 
