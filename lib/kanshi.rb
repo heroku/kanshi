@@ -11,7 +11,7 @@ class Kanshi
 
   def initialize(options = {})
     @options = {
-      :databases => [],
+      :databases => {},
       :delay => 300,
       :reporter => ScrollsReporter
     }
