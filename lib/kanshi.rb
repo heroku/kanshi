@@ -12,7 +12,7 @@ class Kanshi
   def initialize(options = {})
     @options = {
       :databases => {},
-      :delay => 300,
+      :delay => 60,
       :reporter => ScrollsReporter
     }
     @options.merge!(options)

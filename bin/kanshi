@@ -14,5 +14,5 @@ end
 
 Kanshi.run(
   :databases => databases,
-  :delay => (ENV['KANSHI_SAMPLE_DELAY'] || 300).to_i
+  :delay => (ENV['KANSHI_SAMPLE_DELAY'] || 60).to_i
 )
