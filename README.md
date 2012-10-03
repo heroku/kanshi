@@ -26,9 +26,10 @@ Kanshi will work as a gem or as a standalone app.
 
 ### Create as separate Heroku app
 
-1. Push the code as-is to a new Heroku app.
-2. Set environment variables with database URLs.
-3. `heroku scale kanshi=1`
+1. Create a new app.
+2. Follow steps 1-3 from above.
+3. Add environment variables for each database URL you want to monitor.
+4. `heroku scale kanshi=1`
 
 ### Custom install
 
@@ -36,6 +37,9 @@ You can create your own version of `bin/kanshi` to run Kanshi in any way
 of your choosing, e.g. monitor specific databases or provide your own
 reporter for output. An easy way to do this would be to create a Rake
 task to run Kanshi.
+
+For more information, see the Configuration section below and [the
+source code for bin/kanshi](/heroku/kanshi/blob/master/bin/kanshi).
 
 ## Configuration
 
