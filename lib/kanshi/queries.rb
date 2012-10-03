@@ -1,11 +1,12 @@
 Kanshi::Queries = <<EOF.split(/\s*;\s*/)
 SELECT
-  pg_database_size(d.datname) as size,
+  pg_database_size(d.datname) AS size,
   numbackends,
   xact_commit,
   xact_rollback,
   blks_read,
   blks_hit,
+  blks_read + blks_hit AS blks_total,
   tup_fetched,
   tup_returned,
   tup_inserted,
