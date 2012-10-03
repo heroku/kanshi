@@ -8,7 +8,7 @@ databases = ENV.select { |k, v| v =~ %r{^postgres://} }.invert.invert
 prefix = ENV['KANSHI_PREFIX'] || 'kanshi'
 unless prefix.empty?
   databases.keys.each do |db|
-    databases["#{prefix}.#{db}"] = databases.delete(db)
+    databases["#{prefix}.#{db.downcase}"] = databases.delete(db)
   end
 end
 
