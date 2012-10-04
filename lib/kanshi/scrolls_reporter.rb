@@ -41,7 +41,12 @@ private
     hit = data[:blks_hit] || 0
     read = data[:blks_read] || 0
     if hit + read > 0
-      data[:cache_hit_ratio] = 100.0 * hit / (hit + read)
+      data[:blks_hit_ratio] = 100.0 * hit / (hit + read)
+    end
+    hit = data[:heap_blks_hit] || 0
+    read = data[:heap_blks_read] || 0
+    if hit > 0
+      data[:heap_hit_ratio] = 100.0 * (hit - read) / hit
     end
     data
   end

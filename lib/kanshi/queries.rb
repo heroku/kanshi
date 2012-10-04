@@ -32,4 +32,32 @@ SELECT
   SUM(idx_blks_hit)::bigint AS idx_blks_hit
 FROM
   pg_statio_user_tables;
+
+SELECT
+  COUNT(*) AS locks_waiting
+FROM
+  pg_locks
+WHERE
+  granted = 'f';
+
+SELECT
+  EXTRACT('epoch' from SUM(NOW() - xact_start)) AS total_open_xact_time
+FROM
+  pg_stat_activity
+WHERE
+  xact_start IS NOT NULL;
+
+SELECT
+  COUNT(*) AS xact_waiting
+FROM
+  pg_stat_activity
+WHERE
+  waiting = 't';
+
+SELECT
+  COUNT(*) AS xact_idle
+FROM
+  pg_stat_activity
+WHERE
+  current_query = '<IDLE> in transaction';
 EOF
