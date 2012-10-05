@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'kanshi'
-  s.version     = '0.2.0'
+  s.version     = '0.2.1'
   s.date        = '2012-10-01'
   s.summary     = "Monitors a Postgres database"
   s.description = "Prints Postgres database metrics to your log stream"
