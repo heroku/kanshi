@@ -6,7 +6,7 @@ class Kanshi::ScrollsReporter
     @last_value = {}
   end
 
-  ABSOLUTE = [:size, :numbackends]
+  ABSOLUTE = [:size, :numbackends, :locks_waiting, :total_open_xact_time, :xact_waiting, :xact_idle]
 
   def report(name, url, data)
     data = calculate_hit_rate(record_and_diff(name, data))
@@ -26,10 +26,11 @@ private
     if @last_value[name]
       diff = Hash.new
       data.keys.each do |key|
-        diff[key] = data[key] - @last_value[name][key]
-      end
-      ABSOLUTE.each do |key|
-        diff["absolute_#{key}"] = data[key]
+        if ABSOLUTE.include?(key)
+          diff[key] = data[key]
+        else
+          diff[key] = data[key] - @last_value[name][key]
+        end
       end
     end
     @last_value[name] = data
