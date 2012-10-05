@@ -47,10 +47,13 @@ If using the `kanshi` binary, configuration is optional but is done
 through environment variables:
 
 * Kanshi will monitor all `postgres://` URLs in your environment.
-* `KANSHI_SAMPLE_DELAY` will change how often Kanshi monitors your
-  database in seconds. Default: 300
 * `KANSHI_PREFIX` will change the prefix used on metrics. Default:
   `kanshi`
+* `KANSHI_SAMPLE_DELAY` will change how often Kanshi monitors your
+  database in seconds. Default: 60. This is the recommended time so that
+  your metrics are reported on a "per minute" basis (metrics are not yet
+  normalized per time period, so changing this value will significantly
+  affect metric values).
 
 Environment variables have no effect on the Kanshi library code, so if
 executing Kanshi manually, configuration is done via the options hash
