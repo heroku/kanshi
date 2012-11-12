@@ -1,8 +1,8 @@
-require 'scrolls'
+class Kanshi::Reporter
+  attr_accessor :logger
 
-class Kanshi::ScrollsReporter
-
-  def initialize
+  def initialize(logger)
+    @logger = logger
     @last_value = {}
   end
 
@@ -11,10 +11,8 @@ class Kanshi::ScrollsReporter
   def report(name, url, data)
     data = calculate_hit_rate(record_and_diff(name, data))
     if data
-      Scrolls.context(:app => name, :measure => true) do
-        data.each do |k, v|
-          Scrolls.log(:at => k, :last => v)
-        end
+      data.each do |k, v|
+        logger.log(:app => name, :measure => true, :at => k, :last => v)
       end
     end
   end
@@ -26,6 +24,7 @@ private
     if @last_value[name]
       diff = Hash.new
       data.keys.each do |key|
+        next unless data[key]
         if ABSOLUTE.include?(key)
           diff[key] = data[key]
         else
