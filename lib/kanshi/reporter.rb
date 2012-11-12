@@ -26,6 +26,7 @@ private
     if @last_value[name]
       diff = Hash.new
       data.keys.each do |key|
+        next unless data[key]
         if ABSOLUTE.include?(key)
           diff[key] = data[key]
         else
