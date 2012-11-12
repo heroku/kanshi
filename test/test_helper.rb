@@ -4,11 +4,11 @@ require "./lib/kanshi"
 
 ENV["TEST_DATABASE_URL"] ||= "postgres://localhost/kanshi_test"
 
-module Scrolls
-  extend self
+class MockLogger
+  attr_accessor :data
 
-  def data
-    @@data ||= []
+  def initialize
+    @data = []
   end
 
   def log(*a)

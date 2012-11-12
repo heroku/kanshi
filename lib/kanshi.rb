@@ -2,6 +2,7 @@ Kanshi = Class.new
 
 require 'kanshi/collector'
 require 'kanshi/reporter'
+require 'scrolls'
 
 class Kanshi
 
@@ -13,10 +14,10 @@ class Kanshi
     @options = {
       :databases => {},
       :delay => 60,
-      :reporter => Reporter.new
+      :logger => Scrolls
     }
     @options.merge!(options)
-    @reporter = @options[:reporter]
+    @reporter = Reporter.new(@options[:logger])
   end
 
   def run
