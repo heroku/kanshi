@@ -2,7 +2,6 @@ Kanshi = Class.new
 
 require 'kanshi/collector'
 require 'kanshi/reporter'
-require 'scrolls'
 
 class Kanshi
 
@@ -14,10 +13,18 @@ class Kanshi
     @options = {
       :databases => {},
       :delay => 60,
-      :logger => Scrolls
+      :logger => default_logger
     }
     @options.merge!(options)
-    @reporter = Reporter.new(@options[:logger])
+    unless logger = @options[:logger]
+      raise ArgumentError, "Could not find Scrolls. Make sure it's available, or pass your own :logger"
+    end
+    @reporter = Reporter.new(logger)
+  end
+
+  def default_logger
+    return unless defined?(Scrolls)
+    Scrolls
   end
 
   def run
