@@ -13,10 +13,10 @@ class Kanshi
     @options = {
       :databases => {},
       :delay => 60,
-      :reporter => ScrollsReporter
+      :reporter => ScrollsReporter.new
     }
     @options.merge!(options)
-    @reporter = @options[:reporter].new
+    @reporter = @options[:reporter]
   end
 
   def run
