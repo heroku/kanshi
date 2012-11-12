@@ -1,7 +1,7 @@
 Kanshi = Class.new
 
 require 'kanshi/collector'
-require 'kanshi/scrolls_reporter'
+require 'kanshi/reporter'
 
 class Kanshi
 
@@ -13,7 +13,7 @@ class Kanshi
     @options = {
       :databases => {},
       :delay => 60,
-      :reporter => ScrollsReporter.new
+      :reporter => Reporter.new
     }
     @options.merge!(options)
     @reporter = @options[:reporter]

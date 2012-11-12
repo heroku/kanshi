@@ -1,6 +1,6 @@
 require 'scrolls'
 
-class Kanshi::ScrollsReporter
+class Kanshi::Reporter
 
   def initialize
     @last_value = {}
