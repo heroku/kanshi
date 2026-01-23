@@ -1,4 +1,5 @@
-Kanshi::Queries = <<EOF.split(/\s*;\s*/)
+Kanshi::Queries = {}
+Kanshi::Queries[:default] = <<EOF.split(/\s*;\s*/)
 SELECT
   pg_database_size(d.datname) AS size,
   numbackends,
@@ -61,3 +62,8 @@ FROM
 WHERE
   current_query = '<IDLE> in transaction';
 EOF
+
+Kanshi::Queries["9.2"] = Kanshi::Queries[:default].
+  join(";").
+  sub("current_query =", "query =").
+  split(";")
